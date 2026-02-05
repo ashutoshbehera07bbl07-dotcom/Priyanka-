@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Priyanka!</title>
+    <style>
+        :root {
+            --pink: #ff69b4;
+            --dark-pink: #ff1493;
+            --cake-color: #f3e5ab;
+        }
+
+        body {
+            background-color: #ffe4e1;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+            z-index: 2;
+        }
+
+        h1 {
+            color: var(--dark-pink);
+            font-size: 3rem;
+            text-shadow: 2px 2px #fff;
+            margin-bottom: 10px;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        /* --- Cake Styling --- */
+        .cake-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin-top: 50px;
+        }
+
+        .cake {
+            position: absolute;
+            bottom: 0;
+            width: 200px;
+            height: 100px;
+            background: var(--cake-color);
+            border-radius: 10px 10px 0 0;
+            box-shadow: inset 0 -10px 0 rgba(0,0,0,0.1);
+        }
+
+        .cake::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            height: 20px;
+            background: #ffb6c1;
+        }
+
+        .candle {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 40px;
+            background: #fff;
+            border-top: 5px solid var(--pink);
+        }
+
+        .flame {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 20px;
+            background: orange;
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 10px orange;
+            animation: flicker 0.1s infinite alternate;
+        }
+
+        @keyframes flicker {
+            from { transform: translateX(-50%) scale(1); }
+            to { transform: translateX(-50%) scale(1.1); }
+        }
+
+        .hidden { display: none; }
+
+        /* --- UI Elements --- */
+        button {
+            background-color: var(--pink);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--dark-pink);
+            transform: scale(1.05);
+        }
+
+        .cake-slice {
+            font-size: 5rem;
+            margin-top: 20px;
+        }
+
+        .final-msg {
+            font-size: 1.5rem;
+            color: var(--dark-pink);
+            font-weight: bold;
+        }
+
+        iframe {
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-content">
+        <h1>Happy Birthday, Priyanka! 🎂</h1>
+        <p class="quote">"May your day be as bright as your smile and as lovely as you are."</p>
+
+        <div class="cake-container" id="cake-box">
+            <div class="candle" id="candle">
+                <div class="flame" id="flame"></div>
+            </div>
+            <div class="cake"></div>
+        </div>
+
+        <div id="controls">
+            <button id="blow-btn">🌬️ Blow Air</button>
+            <button id="cut-btn" class="hidden">🔪 Cut the Cake</button>
+        </div>
+
+        <div id="result" class="hidden">
+            <div class="cake-slice">🍰</div>
+            <p class="final-msg">It's for you!</p>
+        </div>
+
+        <div class="video-section">
+            <iframe width="320" height="180" 
+                src="https://www.youtube.com/embed/SshZp6XonM8?autoplay=1&mute=0" 
+                title="Birthday Song" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <script>
+        const blowBtn = document.getElementById('blow-btn');
+        const cutBtn = document.getElementById('cut-btn');
+        const flame = document.getElementById('flame');
+        const result = document.getElementById('result');
+        const cakeBox = document.getElementById('cake-box');
+
+        // Logic to "Blow" the candle
+        blowBtn.addEventListener('click', () => {
+            flame.style.display = 'none';
+            blowBtn.classList.add('hidden');
+            cutBtn.classList.remove('hidden');
+            alert("The candles are out! Time to make a wish.");
+        });
+
+        // Logic to "Cut" the cake
+        cutBtn.addEventListener('click', () => {
+            cakeBox.classList.add('hidden');
+            cutBtn.classList.add('hidden');
+            result.classList.remove('hidden');
+            
+            // Add some confetti effect (Simple)
+            document.body.style.backgroundColor = "#fff0f5";
+        });
+    </script>
+</body>
+</html>
